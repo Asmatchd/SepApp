@@ -15,8 +15,9 @@ var validator = require('email-validator');
 import {primaryColor, white, silver, secondaryColor, black} from '../Dimens';
 import {AppInput, AppBtn} from '../../components';
 
-export class SignIn extends Component {
+export class SignUp extends Component {
   state = {
+    name: '',
     email: '',
     password: '',
   };
@@ -24,7 +25,11 @@ export class SignIn extends Component {
   signUp = () => {
     const valid = validator.validate(this.state.email); // true
 
-    if (this.state.email === '' || this.state.password === '') {
+    if (
+      this.state.name === '' ||
+      this.state.email === '' ||
+      this.state.password === ''
+    ) {
       alert('All fields are required');
     } else if (valid === false) {
       alert('Provide valid email');
@@ -74,7 +79,7 @@ export class SignIn extends Component {
                   fontSize: h('3%'),
                   fontWeight: 'bold',
                 }}>
-                Sign In
+                SignUp
               </Text>
 
               <Text
@@ -83,7 +88,7 @@ export class SignIn extends Component {
                   fontSize: h('1.8%'),
                   marginTop: h('1%'),
                 }}>
-                Sign in to account
+                Create new account
               </Text>
             </View>
 
@@ -108,6 +113,12 @@ export class SignIn extends Component {
               />
 
               <AppInput
+                icName={'person'}
+                placeholder={'Name'}
+                onChangeText={(name) => this.setState({name})}
+              />
+
+              <AppInput
                 icName={'mail'}
                 placeholder={'Email'}
                 onChangeText={(email) => this.setState({email})}
@@ -120,7 +131,7 @@ export class SignIn extends Component {
                 onChangeText={(password) => this.setState({password})}
                 secureTextEntry
               />
-              <AppBtn onPress={() => this.signUp()} txt={'Sign In'} />
+              <AppBtn onPress={() => this.signUp()} txt={'Sign Up'} />
 
               <View
                 style={{
@@ -137,10 +148,10 @@ export class SignIn extends Component {
                     fontSize: h('1.7%'),
                     color: black,
                   }}>
-                  Don't have an account
+                  Already have an account
                 </Text>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('SignUp')}
+                  onPress={() => this.props.navigation.navigate('SignIn')}
                   style={{
                     // backgroundColor: '#aaf',
                     height: h('3%'),
@@ -154,7 +165,7 @@ export class SignIn extends Component {
                       color: primaryColor,
                       textDecorationLine: 'underline',
                     }}>
-                    Sign Up!
+                    Sign In!
                   </Text>
                 </TouchableOpacity>
               </View>
