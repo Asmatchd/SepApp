@@ -1,19 +1,14 @@
-/* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity, ScrollView} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/dist/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-var validator = require('email-validator');
 
-import {primaryColor, white, silver, secondaryColor, black} from '../Dimens';
-import {AppInput, AppBtn} from '../../components';
+import {primaryColor} from '../Dimens';
+import {NavHeader} from '../../components';
 
 export class Dashboard extends Component {
   render() {
@@ -23,6 +18,18 @@ export class Dashboard extends Component {
           flex: 1,
           backgroundColor: '#fff',
         }}>
+        <NavHeader
+          leftIc={'ios-arrow-back'}
+          rightIc={'ios-list'}
+          title={' Dashboard'}
+          leftPressed={() => {
+            console.warn('Left');
+          }}
+          rightPressed={() => {
+            console.warn('Right');
+          }}
+        />
+
         <View
           style={{
             flex: 1,
@@ -37,7 +44,7 @@ export class Dashboard extends Component {
               borderColor: primaryColor,
               borderWidth: h('0.1%'),
               borderRadius: h('1%'),
-              marginTop: h('8%'),
+              marginTop: h('3%'),
               alignItems: 'center',
               justifyContent: 'center',
             }}>
