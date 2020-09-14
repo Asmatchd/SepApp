@@ -1,6 +1,14 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  Alert,
+  StatusBar,
+  SafeAreaView,
+} from 'react-native';
 
 import {
   widthPercentageToDP as w,
@@ -18,6 +26,8 @@ export class Dashboard extends Component {
           flex: 1,
           backgroundColor: '#fff',
         }}>
+        <StatusBar backgroundColor={primaryColor} />
+        <SafeAreaView />
         <NavHeader
           leftIc={'ios-arrow-back'}
           rightIc={'ios-list'}
@@ -37,6 +47,23 @@ export class Dashboard extends Component {
           }}>
           {/* first */}
           <TouchableOpacity
+            onPress={() => {
+              Alert.alert(
+                'Important....!',
+                'Critical update is available.',
+                [
+                  {text: 'Ask Later', onPress: () => console.warn('Later')},
+                  {
+                    text: 'NO',
+                    onPress: () => console.warn('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {text: 'Yes', onPress: () => console.warn('OK Pressed')},
+                ],
+                {cancelable: false},
+              );
+            }}
+            delayPressIn={0}
             style={{
               height: h('17%'),
               width: '80%',
@@ -62,6 +89,10 @@ export class Dashboard extends Component {
 
           {/* second */}
           <TouchableOpacity
+            onPress={() => {
+              alert('error');
+            }}
+            delayPressIn={0}
             style={{
               height: h('17%'),
               width: '80%',
@@ -87,6 +118,7 @@ export class Dashboard extends Component {
 
           {/* third */}
           <TouchableOpacity
+            delayPressIn={0}
             style={{
               height: h('17%'),
               width: '80%',
