@@ -7,34 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		004FAF0F0697489C897062B5 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1E5C531A4A1B46FDB47D2A4A /* MaterialCommunityIcons.ttf */; };
 		00E356F31AD99517003FC87E /* SepAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SepAppTests.m */; };
-		060C7566AE814722A33F1276 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CEF3810AA2E4A64BCB872CB /* FontAwesome5_Solid.ttf */; };
-		0733884ACE964E6B9B605205 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47CC8B6EB11B4B27B770A95C /* Entypo.ttf */; };
-		10428A833AB944C39CDD78A9 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EAAE4B4D5114A3580B8220B /* Foundation.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1D724FF112FA47709CA2435C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0CA2BCB22EF247C2B6A170F4 /* Octicons.ttf */; };
-		2136A5DE9FEF4D41BFEB398E /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFAD87413F444F3E9C6ACB17 /* Fontisto.ttf */; };
-		23646128C9D34CDEA47F07A7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637F9786B9FD48FF89A4EC84 /* Ionicons.ttf */; };
-		260A63FBF93C4AD2AEE9F1A4 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 96A9AF716ACB456F8B2EC8EC /* SimpleLineIcons.ttf */; };
 		27B3B4C3AC879317CDF1051F /* libPods-SepApp-SepAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 505AE13F49237E0A06600F29 /* libPods-SepApp-SepAppTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* SepAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SepAppTests.m */; };
 		358D8D28E70ECE4C599A9D91 /* libPods-SepApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B93795CF08A40A0B3AA291B3 /* libPods-SepApp-tvOS.a */; };
-		643735E875B54960AED81379 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 081D611F3AF64FF5BFB19245 /* AntDesign.ttf */; };
-		72C0E8AC56F746A7B10D4454 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A67446AFB1A74CEBB3F08A3F /* Zocial.ttf */; };
 		735D718A9836966AD3930557 /* libPods-SepApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C7E4773F75D68C77E7B9EF1 /* libPods-SepApp.a */; };
-		795B2098B6DB48419B744EF0 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 157899D1FA2F4B6899CF6E2A /* MaterialIcons.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		8C1DFDEDC0D34100804C14A5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 07D54A5BB836429D98230B30 /* FontAwesome.ttf */; };
-		B06BBB56567F4A4EA00CB67E /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE6DC7188C8041769DB798AD /* EvilIcons.ttf */; };
-		D1B19B7756EA495C805D149B /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E7993738013E4CDABC6E15E5 /* FontAwesome5_Brands.ttf */; };
-		DAA47C122874434198177F0D /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C28FD595A39E4B61BC8A6F02 /* Feather.ttf */; };
-		DAB3CBA48D144DBDBA33F2F3 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E77B3F6F4CB40E28BC4C06F /* FontAwesome5_Regular.ttf */; };
 		F56B8F9E2CEF7A06EC8659ED /* libPods-SepApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD0C21886899F92C4F3281A /* libPods-SepApp-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -349,7 +333,6 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = JSN3658PAV;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -398,22 +381,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				643735E875B54960AED81379 /* AntDesign.ttf in Resources */,
-				0733884ACE964E6B9B605205 /* Entypo.ttf in Resources */,
-				B06BBB56567F4A4EA00CB67E /* EvilIcons.ttf in Resources */,
-				DAA47C122874434198177F0D /* Feather.ttf in Resources */,
-				8C1DFDEDC0D34100804C14A5 /* FontAwesome.ttf in Resources */,
-				D1B19B7756EA495C805D149B /* FontAwesome5_Brands.ttf in Resources */,
-				DAB3CBA48D144DBDBA33F2F3 /* FontAwesome5_Regular.ttf in Resources */,
-				060C7566AE814722A33F1276 /* FontAwesome5_Solid.ttf in Resources */,
-				2136A5DE9FEF4D41BFEB398E /* Fontisto.ttf in Resources */,
-				10428A833AB944C39CDD78A9 /* Foundation.ttf in Resources */,
-				23646128C9D34CDEA47F07A7 /* Ionicons.ttf in Resources */,
-				004FAF0F0697489C897062B5 /* MaterialCommunityIcons.ttf in Resources */,
-				795B2098B6DB48419B744EF0 /* MaterialIcons.ttf in Resources */,
-				1D724FF112FA47709CA2435C /* Octicons.ttf in Resources */,
-				260A63FBF93C4AD2AEE9F1A4 /* SimpleLineIcons.ttf in Resources */,
-				72C0E8AC56F746A7B10D4454 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,7 +759,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JSN3658PAV;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SepApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -816,7 +783,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JSN3658PAV;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SepApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
