@@ -1,6 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, SafeAreaView, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
 import {
   widthPercentageToDP as w,
@@ -14,37 +21,130 @@ export class List extends Component {
   state = {
     data: [
       {
-        email: 'study@g.com',
+        email: 'study@g.com study@g.com study@g.com study@g.com study@g.com',
         name: 'Study',
+        time: '12:00 PM',
+        img: require('../../assets/1.jpg'),
+        clr: '#faf',
       },
       {
         email: 'new@g.com',
         name: 'New',
+        time: '01:00 AM',
+        img: require('../../assets/2.jpg'),
+        clr: '#f22',
       },
       {
         email: 'Monday@g.com',
         name: 'Monday',
+        time: '12:46 AM',
+        img: require('../../assets/3.jpg'),
+        clr: '#aaf',
       },
     ],
   };
 
   renderItemDesign = (item) => (
-    <View
+    <TouchableOpacity
+      delayPressIn={0}
+      onPress={() =>
+        this.props.navigation.navigate('ShowItem', {
+          navProps: item,
+        })
+      }
       style={{
-        backgroundColor: primaryColor,
-        height: h('8%'),
+        backgroundColor: white,
+        height: h('10%'),
         marginBottom: h('1%'),
-        alignItems: 'center',
-        justifyContent: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        borderWidth: h('0.1'),
+        borderColor: '#0004',
+        borderRadius: h('1'),
+        flexDirection: 'row',
       }}>
-      <Text
+      {/* Img view */}
+      <View
         style={{
-          color: white,
-          fontSize: h('3%'),
+          height: '100%',
+          width: '20%',
+          // backgroundColor: '#faf',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-        {item.name}
-      </Text>
-    </View>
+        {/* <View
+          style={{
+            height: h('4%'),
+            width: h('4%'),
+            borderRadius: h('6%'),
+            backgroundColor: item.clr,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <View
+            style={{
+              height: h('3%'),
+              width: h('3%'),
+              borderRadius: h('6%'),
+              backgroundColor: 'blue',
+              borderColor: '#fff',
+              borderWidth: h('0.2%'),
+            }}
+          />
+        </View> */}
+        <Image
+          style={{
+            height: h('8%'),
+            width: h('8%'),
+            borderRadius: h('6%'),
+          }}
+          source={item.img}
+        />
+      </View>
+
+      {/* Center view */}
+      <View
+        style={{
+          height: '100%',
+          width: '65%',
+          // backgroundColor: '#aaf',
+          justifyContent: 'center',
+        }}>
+        <Text
+          style={{
+            color: '#0009',
+            fontSize: h('2.7%'),
+          }}>
+          {item.name}
+        </Text>
+        <Text
+          numberOfLines={1}
+          style={{
+            color: '#0009',
+            fontSize: h('2%'),
+          }}>
+          {item.email}
+        </Text>
+      </View>
+
+      {/* right view */}
+      <View
+        style={{
+          height: '100%',
+          width: '15%',
+          // backgroundColor: '#afa',
+          // alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text
+          style={{
+            color: '#0009',
+            fontSize: h('1.8%'),
+          }}>
+          {item.time}
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 
   render() {
@@ -56,14 +156,14 @@ export class List extends Component {
         <SafeAreaView />
         <NavHeader
           leftIc={'ios-arrow-back'}
-          title={' Listing'}
+          title={'Listing'}
           leftPressed={() => {
             this.props.navigation.goBack();
           }}
         />
         <View
           style={{
-            marginTop: h('1%'),
+            margin: h('1%'),
             flex: 1,
           }}>
           <FlatList
