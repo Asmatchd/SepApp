@@ -41,17 +41,63 @@ export class List extends Component {
         img: require('../../assets/3.jpg'),
         clr: '#aaf',
       },
+      {
+        email: 'new@g.com',
+        name: 'asd',
+        time: '01:00 AM',
+        img: require('../../assets/2.jpg'),
+        clr: '#f22',
+      },
+      {
+        email: 'Monday@g.com',
+        name: 'asda',
+        time: '12:46 AM',
+        img: require('../../assets/3.jpg'),
+        clr: '#aaf',
+      },
+      {
+        email: 'new@g.com',
+        name: 'ew',
+        time: '01:00 AM',
+        img: require('../../assets/2.jpg'),
+        clr: '#f22',
+      },
+      {
+        email: 'Monday@g.com',
+        name: 'gf',
+        time: '12:46 AM',
+        img: require('../../assets/3.jpg'),
+        clr: '#aaf',
+      },
+      {
+        email: 'new@g.com',
+        name: 'werw',
+        time: '01:00 AM',
+        img: require('../../assets/2.jpg'),
+        clr: '#f22',
+      },
+      {
+        email: 'Monday@g.com',
+        name: 'we',
+        time: '12:46 AM',
+        img: require('../../assets/3.jpg'),
+        clr: '#aaf',
+      },
     ],
+
+    cart: [],
   };
 
-  renderItemDesign = (item) => (
+  renderItemDesign = (item, index) => (
     <TouchableOpacity
       delayPressIn={0}
-      onPress={() =>
-        this.props.navigation.navigate('ShowItem', {
-          navProps: item,
-        })
-      }
+      // onPress={() => this.navToShow(item)}
+      // onPress={() => {
+      //   this.removeByIndex(item);
+      // }}
+      onPress={() => {
+        this.add(item);
+      }}
       style={{
         backgroundColor: white,
         height: h('10%'),
@@ -147,6 +193,44 @@ export class List extends Component {
     </TouchableOpacity>
   );
 
+  // remove by index
+  removeByIndex = (item) => {
+    const arr = this.state.data;
+
+    // const index = arr.findIndex((prev) => prev.name === item.name);
+
+    const index = arr.indexOf(item);
+
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+
+    this.setState({data: arr});
+  };
+
+  // navigate to show screen
+  navToShow = (item) => {
+    this.props.navigation.navigate('ShowItem', {
+      navProps: item,
+    });
+  };
+
+  //  add item into array
+  add = (item) => {
+    // const data = {
+    //   email: 'newUser@g.com',
+    //   name: 'my new user',
+    //   time: '12:00 PM',
+    //   img: require('../../assets/1.jpg'),
+    //   clr: '#aaa',
+    // };
+
+    // this.setState({cart: item});
+
+    // to store new data along side previous one
+    this.setState((prevState) => ({cart: [...prevState.cart, item]}));
+  };
+
   render() {
     return (
       <View
@@ -156,9 +240,13 @@ export class List extends Component {
         <SafeAreaView />
         <NavHeader
           leftIc={'ios-arrow-back'}
+          rightIc={'ios-add'}
           title={'Listing'}
           leftPressed={() => {
             this.props.navigation.goBack();
+          }}
+          rightPressed={() => {
+            console.warn(this.state.cart);
           }}
         />
         <View
@@ -168,7 +256,7 @@ export class List extends Component {
           }}>
           <FlatList
             data={this.state.data}
-            renderItem={({item}) => this.renderItemDesign(item)}
+            renderItem={({item, index}) => this.renderItemDesign(item, index)}
             keyExtractor={(item) => item.name}
           />
         </View>
