@@ -21,6 +21,90 @@ export class List extends Component {
   state = {
     data: [
       {
+        name: 'First',
+        data: [
+          {
+            email:
+              'study@g.com study@g.com study@g.com study@g.com study@g.com',
+            name: 'Study',
+            time: '12:00 PM',
+            img: require('../../assets/1.jpg'),
+            clr: '#faf',
+          },
+          {
+            email: 'new@g.com',
+            name: 'New',
+            time: '01:00 AM',
+            img: require('../../assets/2.jpg'),
+            clr: '#f22',
+          },
+          {
+            email: 'Monday@g.com',
+            name: 'Monday',
+            time: '12:46 AM',
+            img: require('../../assets/3.jpg'),
+            clr: '#aaf',
+          },
+        ],
+      },
+
+      {
+        name: 'Second',
+        data: [
+          {
+            email: 'Second.Com',
+            name: 'Second',
+            time: '01:12 PM',
+            img: require('../../assets/1.jpg'),
+            clr: '#faf',
+          },
+          {
+            email: '@nd.Com',
+            name: 'Second Name',
+            time: '01:12 PM',
+            img: require('../../assets/2.jpg'),
+            clr: '#f22',
+          },
+          {
+            email: '#triyem.Com',
+            name: 'yz',
+            time: '01:12 PM',
+            img: require('../../assets/3.jpg'),
+            clr: '#aaf',
+          },
+        ],
+      },
+
+      {
+        name: 'Third',
+        data: [
+          {
+            email: 'Third.Com',
+            name: 'Third',
+            time: '01:12 PM',
+            img: require('../../assets/1.jpg'),
+            clr: '#faf',
+          },
+          {
+            email: '3Rd.Com',
+            name: 'Third Name',
+            time: '01:12 PM',
+            img: require('../../assets/2.jpg'),
+            clr: '#f22',
+          },
+          {
+            email: 'New.Com',
+            name: 'yz',
+            time: '01:12 PM',
+            img: require('../../assets/3.jpg'),
+            clr: '#aaf',
+          },
+        ],
+      },
+    ],
+
+    verticalData: [
+      {
         email: 'study@g.com study@g.com study@g.com study@g.com study@g.com',
         name: 'Study',
         time: '12:00 PM',
@@ -41,63 +125,48 @@ export class List extends Component {
         img: require('../../assets/3.jpg'),
         clr: '#aaf',
       },
-      {
-        email: 'new@g.com',
-        name: 'asd',
-        time: '01:00 AM',
-        img: require('../../assets/2.jpg'),
-        clr: '#f22',
-      },
-      {
-        email: 'Monday@g.com',
-        name: 'asda',
-        time: '12:46 AM',
-        img: require('../../assets/3.jpg'),
-        clr: '#aaf',
-      },
-      {
-        email: 'new@g.com',
-        name: 'ew',
-        time: '01:00 AM',
-        img: require('../../assets/2.jpg'),
-        clr: '#f22',
-      },
-      {
-        email: 'Monday@g.com',
-        name: 'gf',
-        time: '12:46 AM',
-        img: require('../../assets/3.jpg'),
-        clr: '#aaf',
-      },
-      {
-        email: 'new@g.com',
-        name: 'werw',
-        time: '01:00 AM',
-        img: require('../../assets/2.jpg'),
-        clr: '#f22',
-      },
-      {
-        email: 'Monday@g.com',
-        name: 'we',
-        time: '12:46 AM',
-        img: require('../../assets/3.jpg'),
-        clr: '#aaf',
-      },
     ],
 
     cart: [],
+
+    refreshing: false,
   };
 
+  // Horizontal
+  renderHorizontalDesign = (item, index) => (
+    <TouchableOpacity
+      onPress={() => this.setState({verticalData: item.data})}
+      style={{
+        height: h('13%'),
+        // backgroundColor: '#a44',
+        justifyContent: 'center',
+      }}>
+      <View
+        style={{
+          height: h('8%'),
+          width: w('25%'),
+          backgroundColor: '#0001',
+          margin: h('1%'),
+          justifyContent: 'center',
+          alignItems: 'center',
+          borderRadius: h('1%'),
+        }}>
+        <Text>{item.name}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  // Vertical
   renderItemDesign = (item, index) => (
     <TouchableOpacity
       delayPressIn={0}
-      // onPress={() => this.navToShow(item)}
+      onPress={() => this.navToShow(item)}
       // onPress={() => {
       //   this.removeByIndex(item);
       // }}
-      onPress={() => {
-        this.add(item);
-      }}
+      // onPress={() => {
+      //   this.add(item);
+      // }}
       style={{
         backgroundColor: white,
         height: h('10%'),
@@ -231,6 +300,16 @@ export class List extends Component {
     this.setState((prevState) => ({cart: [...prevState.cart, item]}));
   };
 
+  refresh = () => {
+    this.setState({refreshing: true});
+
+    setTimeout(() => {
+      this.setState({refreshing: false}, () => {
+        console.warn('All done');
+      });
+    }, 3000);
+  };
+
   render() {
     return (
       <View
@@ -251,13 +330,32 @@ export class List extends Component {
         />
         <View
           style={{
+            height: h('13%'),
+            backgroundColor: '#fff',
+          }}>
+          <FlatList
+            horizontal
+            data={this.state.data}
+            renderItem={({item, index}) =>
+              this.renderHorizontalDesign(item, index)
+            }
+            keyExtractor={(item) => item.name}
+            showsHorizontalScrollIndicator={false}
+          />
+        </View>
+
+        <View
+          style={{
             margin: h('1%'),
             flex: 1,
           }}>
           <FlatList
-            data={this.state.data}
+            data={this.state.verticalData}
             renderItem={({item, index}) => this.renderItemDesign(item, index)}
             keyExtractor={(item) => item.name}
+            showsVerticalScrollIndicator={false}
+            refreshing={this.state.refreshing}
+            onRefresh={() => this.refresh()}
           />
         </View>
       </View>
