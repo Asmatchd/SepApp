@@ -89,9 +89,9 @@ export class Dashboard extends Component {
 
           {/* second */}
           <TouchableOpacity
-            onPress={() => {
-              alert('error');
-            }}
+            // onPress={() => {
+            //   this.props.navigation.navigate('List');
+            // }}
             delayPressIn={0}
             style={{
               height: h('17%'),

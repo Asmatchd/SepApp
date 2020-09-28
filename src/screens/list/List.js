@@ -128,6 +128,7 @@ export class List extends Component {
     ],
 
     cart: [],
+    selected: 'First',
 
     refreshing: false,
   };
@@ -135,7 +136,9 @@ export class List extends Component {
   // Horizontal
   renderHorizontalDesign = (item, index) => (
     <TouchableOpacity
-      onPress={() => this.setState({verticalData: item.data})}
+      onPress={() =>
+        this.setState({verticalData: item.data, selected: item.name})
+      }
       style={{
         height: h('13%'),
         // backgroundColor: '#a44',
@@ -145,13 +148,19 @@ export class List extends Component {
         style={{
           height: h('8%'),
           width: w('25%'),
-          backgroundColor: '#0001',
+          backgroundColor:
+            this.state.selected === item.name ? primaryColor : '#0001',
           margin: h('1%'),
           justifyContent: 'center',
           alignItems: 'center',
           borderRadius: h('1%'),
         }}>
-        <Text>{item.name}</Text>
+        <Text
+          style={{
+            color: this.state.selected === item.name ? '#fff' : '#000',
+          }}>
+          {item.name}
+        </Text>
       </View>
     </TouchableOpacity>
   );
@@ -160,13 +169,13 @@ export class List extends Component {
   renderItemDesign = (item, index) => (
     <TouchableOpacity
       delayPressIn={0}
-      onPress={() => this.navToShow(item)}
+      // onPress={() => this.navToShow(item)}
       // onPress={() => {
       //   this.removeByIndex(item);
       // }}
-      // onPress={() => {
-      //   this.add(item);
-      // }}
+      onPress={() => {
+        this.add(item);
+      }}
       style={{
         backgroundColor: white,
         height: h('10%'),
@@ -286,18 +295,18 @@ export class List extends Component {
 
   //  add item into array
   add = (item) => {
-    // const data = {
-    //   email: 'newUser@g.com',
-    //   name: 'my new user',
-    //   time: '12:00 PM',
-    //   img: require('../../assets/1.jpg'),
-    //   clr: '#aaa',
-    // };
+    const data = {
+      name: item.name,
+      email: item.email,
+    };
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, data],
+    }));
 
     // this.setState({cart: item});
 
     // to store new data along side previous one
-    this.setState((prevState) => ({cart: [...prevState.cart, item]}));
+    // this.setState((prevState) => ({cart: [...prevState.cart, item]}));
   };
 
   refresh = () => {
