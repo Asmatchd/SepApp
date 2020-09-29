@@ -29,14 +29,10 @@ export class Dashboard extends Component {
         <StatusBar backgroundColor={primaryColor} />
         <SafeAreaView />
         <NavHeader
-          leftIc={'ios-arrow-back'}
-          rightIc={'ios-list'}
+          leftIc={'ios-list'}
           title={' Dashboard'}
           leftPressed={() => {
-            console.warn('Left');
-          }}
-          rightPressed={() => {
-            console.warn('Right');
+            this.props.navigation.openDrawer();
           }}
         />
 
@@ -89,9 +85,9 @@ export class Dashboard extends Component {
 
           {/* second */}
           <TouchableOpacity
-            // onPress={() => {
-            //   this.props.navigation.navigate('List');
-            // }}
+            onPress={() => {
+              this.props.navigation.navigate('List');
+            }}
             delayPressIn={0}
             style={{
               height: h('17%'),

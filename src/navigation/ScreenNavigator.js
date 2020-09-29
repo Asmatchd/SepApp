@@ -7,6 +7,7 @@ import {SignIn} from '../screens/signIn';
 import {Dashboard} from '../screens/dashboard';
 import {List, ShowItem} from '../screens/list';
 import {TabNavigator} from './TabNavigator';
+import {DrawerNavigator} from './DrawerNavigator';
 
 const Stack = createStackNavigator();
 
@@ -15,21 +16,28 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="DrawerNavigator"
+          component={DrawerNavigator}
+          options={{headerShown: false}}
+        />
+        {/* <Stack.Screen
           name="TabNavigator"
           component={TabNavigator}
           options={{headerShown: false}}
-        />
-        <Stack.Screen
+        /> */}
+
+        {/* <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{headerShown: false}}
-        />
+        /> */}
 
         {/* <Stack.Screen
           name="List"
           component={List}
           options={{headerShown: false}}
         /> */}
+
         <Stack.Screen
           name="ShowItem"
           component={ShowItem}
