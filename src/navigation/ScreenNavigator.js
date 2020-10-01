@@ -8,6 +8,7 @@ import {Dashboard} from '../screens/dashboard';
 import {List, ShowItem} from '../screens/list';
 import {TabNavigator} from './TabNavigator';
 import {DrawerNavigator} from './DrawerNavigator';
+import {Anim} from '../screens/anim';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,11 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Anim"
+          component={Anim}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="DrawerNavigator"
           component={DrawerNavigator}
