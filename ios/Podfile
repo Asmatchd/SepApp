@@ -10,6 +10,7 @@ target 'SepApp' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
   target 'SepAppTests' do
     inherit! :complete
     # Pods for testing

@@ -1,0 +1,1 @@
+export {ImgPick} from './ImgPick';
