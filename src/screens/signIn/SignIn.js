@@ -8,11 +8,12 @@ import {
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import AsyncStorage from '@react-native-community/async-storage';
+
 var validator = require('email-validator');
 
-import {primaryColor, white, silver, secondaryColor, black} from '../Dimens';
+import {primaryColor, white, silver, black} from '../Dimens';
 import {AppInput, AppBtn} from '../../components';
 
 export class SignIn extends Component {
@@ -21,7 +22,11 @@ export class SignIn extends Component {
     password: '',
   };
 
-  signUp = () => {
+  componentDidMount = () => {
+    this.getData();
+  };
+
+  signIn = () => {
     const valid = validator.validate(this.state.email); // true
 
     if (this.state.email === '' || this.state.password === '') {
@@ -29,8 +34,34 @@ export class SignIn extends Component {
     } else if (valid === false) {
       alert('Provide valid email');
     } else {
-      alert('All done');
+      this.storeData();
     }
+  };
+
+  storeData = () => {
+    const data = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    AsyncStorage.setItem('userData', JSON.stringify(data), () => {
+      console.warn('ok');
+    });
+  };
+
+  getData = () => {
+    AsyncStorage.getItem('userData', (error, data) => {
+      if (!error && data !== null) {
+        console.warn(data);
+      } else {
+        alert('User not found');
+      }
+    });
+  };
+
+  removeData = () => {
+    AsyncStorage.removeItem('userData', () => {
+      console.warn('removed');
+    });
   };
 
   render() {
@@ -120,7 +151,8 @@ export class SignIn extends Component {
                 onChangeText={(password) => this.setState({password})}
                 secureTextEntry
               />
-              <AppBtn onPress={() => this.signUp()} txt={'Sign In'} />
+              <AppBtn onPress={() => this.signIn()} txt={'Sign In'} />
+              <AppBtn onPress={() => this.removeData()} txt={'Remove'} />
 
               <View
                 style={{
