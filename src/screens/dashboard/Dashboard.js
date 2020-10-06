@@ -8,6 +8,7 @@ import {
   Alert,
   StatusBar,
   SafeAreaView,
+  ImageBackground,
 } from 'react-native';
 
 import {
@@ -18,13 +19,18 @@ import {
 import {primaryColor} from '../Dimens';
 import {NavHeader} from '../../components';
 
+const bg = require('../../assets/bg.jpg');
+const btn = require('../../assets/btn.jpg');
+
 export class Dashboard extends Component {
   render() {
     return (
-      <View
+      <ImageBackground
+        source={bg}
+        resizeMode={'cover'}
         style={{
           flex: 1,
-          backgroundColor: '#fff',
+          // backgroundColor: '#fff',
         }}>
         <StatusBar backgroundColor={primaryColor} />
         <SafeAreaView />
@@ -63,24 +69,32 @@ export class Dashboard extends Component {
             style={{
               height: h('17%'),
               width: '80%',
-              backgroundColor: '#fff',
+              // backgroundColor: '#fff',
               borderColor: primaryColor,
               borderWidth: h('0.1%'),
               borderRadius: h('1%'),
               marginTop: h('3%'),
-              alignItems: 'center',
-              justifyContent: 'center',
+              // alignItems: 'center',
+              // justifyContent: 'center',
             }}>
-            <Image
-              source={require('../../assets/first.png')}
+            <ImageBackground
+              source={btn}
               style={{
-                height: h('6%'),
-                width: h('6%'),
-                marginBottom: h('2%'),
-              }}
-            />
+                flex: 1,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Image
+                source={require('../../assets/first.png')}
+                style={{
+                  height: h('6%'),
+                  width: h('6%'),
+                  marginBottom: h('2%'),
+                }}
+              />
 
-            <Text>Get Doctor Appointment</Text>
+              <Text>Get Doctor Appointment</Text>
+            </ImageBackground>
           </TouchableOpacity>
 
           {/* second */}
@@ -138,7 +152,7 @@ export class Dashboard extends Component {
             <Text>Waiting Room</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }

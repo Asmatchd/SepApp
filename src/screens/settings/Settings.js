@@ -10,8 +10,15 @@ import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export class Settings extends Component {
+  removeData = () => {
+    AsyncStorage.removeItem('userData', () => {
+      this.props.navigation.replace('SignIn');
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,7 +36,12 @@ export class Settings extends Component {
           <Text style={styles.txt}>Support</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.ItemView}>
+        <TouchableOpacity
+          delayPressIn={0}
+          onPress={() => {
+            this.removeData();
+          }}
+          style={styles.ItemView}>
           <Text style={styles.txt}>Log out</Text>
         </TouchableOpacity>
       </View>

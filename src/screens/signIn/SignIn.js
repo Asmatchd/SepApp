@@ -1,13 +1,12 @@
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 import React, {Component} from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 import {
   widthPercentageToDP as w,
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
-import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -20,10 +19,6 @@ export class SignIn extends Component {
   state = {
     email: '',
     password: '',
-  };
-
-  componentDidMount = () => {
-    this.getData();
   };
 
   signIn = () => {
@@ -44,23 +39,7 @@ export class SignIn extends Component {
       password: this.state.password,
     };
     AsyncStorage.setItem('userData', JSON.stringify(data), () => {
-      console.warn('ok');
-    });
-  };
-
-  getData = () => {
-    AsyncStorage.getItem('userData', (error, data) => {
-      if (!error && data !== null) {
-        console.warn(data);
-      } else {
-        alert('User not found');
-      }
-    });
-  };
-
-  removeData = () => {
-    AsyncStorage.removeItem('userData', () => {
-      console.warn('removed');
+      this.props.navigation.replace('DrawerNavigator');
     });
   };
 
@@ -152,7 +131,6 @@ export class SignIn extends Component {
                 secureTextEntry
               />
               <AppBtn onPress={() => this.signIn()} txt={'Sign In'} />
-              <AppBtn onPress={() => this.removeData()} txt={'Remove'} />
 
               <View
                 style={{
