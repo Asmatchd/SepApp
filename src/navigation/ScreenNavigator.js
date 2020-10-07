@@ -11,6 +11,7 @@ import {DrawerNavigator} from './DrawerNavigator';
 import {Anim} from '../screens/anim';
 import {ImgPick} from '../screens/imgPick';
 import {Splash} from '../screens/splash';
+import {EditProfile} from '../screens/editProfile';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,11 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="EditProfile"
+          component={EditProfile}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="Splash"
           component={Splash}
