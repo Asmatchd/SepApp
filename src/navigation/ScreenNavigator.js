@@ -12,6 +12,7 @@ import {Anim} from '../screens/anim';
 import {ImgPick} from '../screens/imgPick';
 import {Splash} from '../screens/splash';
 import {EditProfile} from '../screens/editProfile';
+import {CalenderLearn} from '../screens/calenderLearn/CalenderLearn';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,11 @@ export const ScreenNavigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="CalenderLearn"
+          component={CalenderLearn}
+          options={{headerShown: false}}
+        />
         <Stack.Screen
           name="EditProfile"
           component={EditProfile}
