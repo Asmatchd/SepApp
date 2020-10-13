@@ -8,18 +8,24 @@ import {
   heightPercentageToDP as h,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
+import ActionButton from 'react-native-action-button';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 var validator = require('email-validator');
+import DateTimePickerModal from 'react-native-modal-datetime-picker/src/index';
 
 import {primaryColor, white, silver, secondaryColor, black} from '../Dimens';
 import {AppInput, AppBtn} from '../../components';
+import moment from 'moment';
 
 export class SignUp extends Component {
   state = {
     name: '',
     email: '',
     password: '',
+
+    isDatePickerVisible: false,
+    selectedDate: 'Click to select',
   };
 
   signUp = () => {
@@ -36,6 +42,24 @@ export class SignUp extends Component {
     } else {
       alert('All done');
     }
+  };
+
+  showDatePicker = () => {
+    this.setState({isDatePickerVisible: true});
+  };
+
+  hideDatePicker = () => {
+    this.setState({isDatePickerVisible: false});
+  };
+
+  handleConfirm = (date) => {
+    this.setState({selectedDate: moment(date).format('DD-MM-YYYY')}, () => {
+      this.hideDatePicker();
+    });
+
+    // this.setState({selectedDate: moment(date).format('hh:mm a')}, () => {
+    //   this.hideDatePicker();
+    // });
   };
 
   render() {
@@ -59,7 +83,7 @@ export class SignUp extends Component {
 
           <View
             style={{
-              height: h('70%'),
+              height: h('75%'),
               // backgroundColor: '#faf',
               marginTop: -h('90%'),
               width: '95%',
@@ -94,7 +118,7 @@ export class SignUp extends Component {
 
             <View
               style={{
-                height: h('55%'),
+                height: h('60%'),
                 backgroundColor: white,
                 width: '85%',
                 borderRadius: h('1%'),
@@ -131,6 +155,25 @@ export class SignUp extends Component {
                 onChangeText={(password) => this.setState({password})}
                 secureTextEntry
               />
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({isDatePickerVisible: true});
+                }}
+                delayPressIn={0}
+                style={{
+                  height: h('6%'),
+                  width: '80%',
+                  borderColor: primaryColor,
+                  borderWidth: h('0.1%'),
+                  borderRadius: h('1%'),
+                  flexDirection: 'row',
+                  marginBottom: h('2%'),
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                <Text>{this.state.selectedDate}</Text>
+              </TouchableOpacity>
+
               <AppBtn onPress={() => this.signUp()} txt={'Sign Up'} />
 
               <View
@@ -171,6 +214,21 @@ export class SignUp extends Component {
               </View>
             </View>
           </View>
+
+          <ActionButton
+            buttonColor="#2dbca4"
+            onPress={() => {
+              console.warn('pressed');
+            }}
+            // position={'center'}
+            useNativeFeedback={true}
+          />
+          <DateTimePickerModal
+            isVisible={this.state.isDatePickerVisible}
+            // mode="time"
+            onConfirm={this.handleConfirm}
+            onCancel={this.hideDatePicker}
+          />
         </View>
       </KeyboardAwareScrollView>
     );

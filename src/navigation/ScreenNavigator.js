@@ -21,6 +21,12 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
           name="CalenderLearn"
           component={CalenderLearn}
           options={{headerShown: false}}
@@ -77,12 +83,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="ShowItem"
           component={ShowItem}
-          options={{headerShown: false}}
-        />
-
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
