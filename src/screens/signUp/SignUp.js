@@ -15,14 +15,16 @@ var validator = require('email-validator');
 import DateTimePickerModal from 'react-native-modal-datetime-picker/src/index';
 
 import {primaryColor, white, silver, secondaryColor, black} from '../Dimens';
-import {AppInput, AppBtn} from '../../components';
+import {AppInput, AppBtn, Loading} from '../../components';
 import moment from 'moment';
+import {axiosInstance, baseUrl} from '../../services/AxiosApi';
 
 export class SignUp extends Component {
   state = {
     name: '',
     email: '',
     password: '',
+    isLoading: false,
 
     isDatePickerVisible: false,
     selectedDate: 'Click to select',
@@ -34,13 +36,36 @@ export class SignUp extends Component {
     if (
       this.state.name === '' ||
       this.state.email === '' ||
-      this.state.password === ''
+      this.state.password === '' ||
+      this.state.selectedDate === 'Click to select'
     ) {
       alert('All fields are required');
     } else if (valid === false) {
       alert('Provide valid email');
     } else {
-      alert('All done');
+      this.manageLoading(true);
+      const params = {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        userDob: this.state.selectedDate,
+      };
+      axiosInstance
+        .post(baseUrl + 'users/signUp', params)
+        .then((res) => {
+          const data = res.data;
+          this.manageLoading(false);
+          if (data.status === '200') {
+            console.warn(data.data);
+            alert(data.msg);
+          } else {
+            alert(data.msg);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.manageLoading(false);
+        });
     }
   };
 
@@ -62,14 +87,18 @@ export class SignUp extends Component {
     // });
   };
 
+  manageLoading = (value) => {
+    this.setState({isLoading: value});
+  };
+
   render() {
     return (
       <KeyboardAwareScrollView contentContainerStyle={{flexGrow: 2}}>
         <View
           style={{
             flex: 1,
-            alignItems: 'center',
           }}>
+          <Loading showLoading={this.state.isLoading} msg={'Please wait'} />
           <View
             style={{
               backgroundColor: primaryColor,
@@ -86,7 +115,7 @@ export class SignUp extends Component {
               height: h('75%'),
               // backgroundColor: '#faf',
               marginTop: -h('90%'),
-              width: '95%',
+              width: '100%',
               alignItems: 'center',
             }}>
             <View
