@@ -16,6 +16,7 @@ import {
 
 import {primaryColor, white} from '../Dimens';
 import {NavHeader} from '../../components';
+import {axiosInstance, baseUrl} from '../../services/AxiosApi';
 
 export class List extends Component {
   state = {

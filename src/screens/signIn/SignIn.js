@@ -13,34 +13,61 @@ import AsyncStorage from '@react-native-community/async-storage';
 var validator = require('email-validator');
 
 import {primaryColor, white, silver, black} from '../Dimens';
-import {AppInput, AppBtn} from '../../components';
+import {AppInput, AppBtn, Loading} from '../../components';
+import {axiosInstance, baseUrl} from '../../services/AxiosApi';
 
 export class SignIn extends Component {
   state = {
     email: '',
     password: '',
+    isLoading: false,
   };
 
   signIn = () => {
-    const valid = validator.validate(this.state.email); // true
+    const {email, password} = this.state;
 
-    if (this.state.email === '' || this.state.password === '') {
+    const valid = validator.validate(email); // true
+
+    if (email === '' || password === '') {
       alert('All fields are required');
     } else if (valid === false) {
       alert('Provide valid email');
     } else {
-      this.storeData();
+      this.manageLoading(true);
+      const params = {
+        email,
+        password,
+      };
+      axiosInstance
+        .post(baseUrl + 'users/signIn', params)
+        .then((res) => {
+          const data = res.data;
+
+          if (data.status === '200') {
+            this.storeData(data.data);
+          } else {
+            this.manageLoading(false);
+            alert(data.msg);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          this.manageLoading(false);
+        });
     }
   };
 
-  storeData = () => {
-    const data = {
-      email: this.state.email,
-      password: this.state.password,
-    };
-    AsyncStorage.setItem('userData', JSON.stringify(data), () => {
-      this.props.navigation.replace('DrawerNavigator');
+  storeData = (userData) => {
+    AsyncStorage.setItem('userData', JSON.stringify(userData), () => {
+      setTimeout(() => {
+        this.manageLoading(false);
+        this.props.navigation.replace('DrawerNavigator');
+      }, 1500);
     });
+  };
+
+  manageLoading = (value) => {
+    this.setState({isLoading: value});
   };
 
   render() {
@@ -49,8 +76,9 @@ export class SignIn extends Component {
         <View
           style={{
             flex: 1,
-            alignItems: 'center',
           }}>
+          <Loading showLoading={this.state.isLoading} msg={'Please wait'} />
+
           <View
             style={{
               backgroundColor: primaryColor,
@@ -67,7 +95,7 @@ export class SignIn extends Component {
               height: h('70%'),
               // backgroundColor: '#faf',
               marginTop: -h('90%'),
-              width: '95%',
+              width: '100%',
               alignItems: 'center',
             }}>
             <View

@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {SignUp} from '../screens/signUp';
 import {SignIn} from '../screens/signIn';
 import {Dashboard} from '../screens/dashboard';
-import {List, ShowItem} from '../screens/list';
+import {List, ShowItem, UsersList} from '../screens/list';
 import {TabNavigator} from './TabNavigator';
 import {DrawerNavigator} from './DrawerNavigator';
 import {Anim} from '../screens/anim';
@@ -21,6 +21,17 @@ export const ScreenNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name="Splash"
+          component={Splash}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
           name="SignUp"
           component={SignUp}
           options={{headerShown: false}}
@@ -34,16 +45,6 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="EditProfile"
           component={EditProfile}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Splash"
-          component={Splash}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
           options={{headerShown: false}}
         />
 
@@ -83,6 +84,11 @@ export const ScreenNavigator = () => {
         <Stack.Screen
           name="ShowItem"
           component={ShowItem}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="UsersList"
+          component={UsersList}
           options={{headerShown: false}}
         />
       </Stack.Navigator>
